@@ -1,0 +1,7 @@
+FROM fabric8/java-alpine-openjdk8-jre
+ENV JAVA_OPTIONS="-Dquarkus.http.host=0.0.0.0"
+ENV AB_ENABLED=jmx_exporter
+RUN apk add --no-cache nss
+COPY build/lib/* /deployments/lib/
+COPY build/*-runner.jar /deployments/app.jar
+ENTRYPOINT [ "/deployments/run-java.sh" ]

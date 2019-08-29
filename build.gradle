@@ -1,0 +1,38 @@
+buildscript {
+    ext {
+        quarkusVersion = '0.21.1'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "io.quarkus:quarkus-gradle-plugin:${quarkusVersion}"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'io.quarkus'
+
+dependencies {
+    implementation enforcedPlatform('io.quarkus:quarkus-bom:0.21.1')
+    compile 'io.quarkus:quarkus-resteasy-jsonb'
+    compile 'io.quarkus:quarkus-rest-client'
+    testCompile 'io.quarkus:quarkus-junit5'
+    testCompile 'io.rest-assured:rest-assured:4.0.0'
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+group = 'org.acme'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'

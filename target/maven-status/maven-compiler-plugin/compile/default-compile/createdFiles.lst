@@ -1,0 +1,4 @@
+org/acme/restclient/CountriesResource.class
+org/acme/restclient/Country.class
+org/acme/restclient/Country$Currency.class
+org/acme/restclient/CountriesService.class
